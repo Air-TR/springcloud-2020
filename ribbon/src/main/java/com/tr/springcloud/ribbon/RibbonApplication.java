@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -39,25 +41,15 @@ public class RibbonApplication {
     @Value("${spring.application.name}")
     String serviceName;
 
-    @GetMapping("/goods/pay")
-    public String goodsApi(String serviceName) {
-        //方法1.注入HttpServletRequest拿到地址，根据地址来判断访问哪一个服务.
-        String url = "";
-        url = request.getScheme() +"://" + request.getServerName()
-                + ":" +request.getServerPort()
-                + request.getServletPath();
+    @RequestMapping("/goods/**")
+    public ResponseEntity goodsApi() {
+        String url = "http://goods-service";
+        url += request.getRequestURI();
         if (request.getQueryString() != null){
             url += "?" + request.getQueryString();
         }
-        //方法2.将服务的名称作为参数传入到url中，在方法中获取到，通过@RequestParam拿到
-        //此方法需要url为 http://runtao.exigengroup.com:8101/goods/pay?serviceName=pay
-        String name = serviceName;
-        return restTemplate().getForObject("http://goods-service/goods/pay", String.class);
-    }
-
-    @GetMapping("/goods/buy")
-    public String goodsApiBuy() {
-        return restTemplate().getForObject("http://goods-service/goods/buy", String.class);
+        return restTemplate().getForEntity(url,Object.class, (Object) null);
+//        return restTemplate().getForObject(url, String.class);
     }
 
 //    @GetMapping("/order")
