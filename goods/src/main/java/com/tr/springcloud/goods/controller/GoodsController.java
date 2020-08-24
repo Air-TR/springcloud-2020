@@ -49,6 +49,11 @@ public class GoodsController {
         goodsRepository.deleteById(id);
     }
 
+    @GetMapping("/feign/{id}")
+    public String goodsFeign(@PathVariable Integer id) {
+        return goodsRepository.getOne(id).getName();
+    }
+
 
 // ---------- 测试负载均衡 ----------
     @GetMapping("/buy")
