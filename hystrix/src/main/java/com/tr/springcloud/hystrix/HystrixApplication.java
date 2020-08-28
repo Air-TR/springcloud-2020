@@ -5,6 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+/**
+ * Hystrix 参考链接：
+ *      https://blog.csdn.net/ko0491/article/details/108132114
+ */
 @SpringBootApplication
 @EnableEurekaClient
 @EnableCircuitBreaker
