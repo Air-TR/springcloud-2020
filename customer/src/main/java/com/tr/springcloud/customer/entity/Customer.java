@@ -14,18 +14,26 @@ import java.math.BigDecimal;
 @Entity
 public class Customer {
 
-    /** id */
+    /**
+     * id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    /** 用户名 */
+    /**
+     * 用户名
+     */
     private String name;
 
-    /** 密码 */
+    /**
+     * 密码
+     */
     private String password;
 
-    /** 手机号 */
+    /**
+     * 手机号
+     */
     private String phone;
 
     public Integer getId() {

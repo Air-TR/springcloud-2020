@@ -55,7 +55,7 @@ public class GoodsController {
     }
 
 
-// ---------- 测试负载均衡 ----------
+    // ---------- 测试负载均衡 ----------
     @GetMapping("/buy")
     public String buy() {
         return "Goods Buy Success!";

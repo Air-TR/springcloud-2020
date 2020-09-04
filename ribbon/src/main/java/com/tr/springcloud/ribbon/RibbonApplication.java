@@ -45,10 +45,10 @@ public class RibbonApplication {
     public ResponseEntity goodsApi() {
         String url = "http://goods-service";
         url += request.getRequestURI();
-        if (request.getQueryString() != null){
+        if (request.getQueryString() != null) {
             url += "?" + request.getQueryString();
         }
-        return restTemplate().getForEntity(url,Object.class, (Object) null);
+        return restTemplate().getForEntity(url, Object.class, (Object) null);
 //        return restTemplate().getForObject(url, String.class);
     }
 

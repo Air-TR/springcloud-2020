@@ -14,15 +14,21 @@ import java.math.BigDecimal;
 @Entity
 public class Goods {
 
-    /** id */
+    /**
+     * id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    /** 商品名 */
+    /**
+     * 商品名
+     */
     private String name;
 
-    /** 价格 */
+    /**
+     * 价格
+     */
     private BigDecimal price;
 
     public Integer getId() {
